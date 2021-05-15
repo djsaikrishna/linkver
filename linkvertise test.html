@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.a {
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+    <div class="a">
+<html>
+<head>
+            <h2>Linkvertise Bypasser | Made by Sniper Mask#7854</H2>
+                <br/>
+                Server Status:<br/>
+                <p style="color:green;">Online/Working</p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<picture>
+  <source media="(min-width:650px)" srcset="linkvertise.png">
+  <source media="(min-width:465px)" srcset="linkvertise.png">
+  <img src="linkvertise.png" alt="Linkvertise" style="width:auto;">
+</picture>
+
+</body>
+</html>
+
+<html>
+<head>
+<style> 
+body {
+  background-image: url("img_tree.gif"), url("paper.gif");
+  background-color: #fed8b1;
+}
+</style>
+</head>
+<body>
+
+</body>
+</html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8"/>
+        <title>Linkvertise Bypasser</title>
+        <style type="text/css">
+            li.success {
+                background-color: lightgreen;
+            }
+            li.failure {
+                background-color: #ffcccb;
+            }
+        </style>
+        <script>
+            let supported_urls = [
+                new RegExp('^https?://(linkvertise[.]com|linkvertise[.]net|link-to[.]net|linkvertise[.]download|file-link[.]net|direct-link[.]net|up-to-down[.]net)/[0-9]+/[^/]+'),
+                new RegExp('^https?://(linkvertise[.]com|linkvertise[.]net|link-to[.]net|linkvertise[.]download|file-link[.]net|direct-link[.]net|up-to-down[.]net)/download/[0-9]+/[^/]+/.+'),
+                new RegExp('^https?://(linkvertise[.]com|linkvertise[.]net|link-to[.]net|linkvertise[.]download|file-link[.]net|direct-link[.]net|up-to-down[.]net)/premium-redirect/[0-9]+'),
+                new RegExp('^https?://(linkvertise[.]com|linkvertise[.]net|link-to[.]net|linkvertise[.]download|file-link[.]net|direct-link[.]net|up-to-down[.]net)/[0-9]+/[^/]+/dynamic/?'),
+                new RegExp('^https?://(aclabink[.]com|adf[.]ly|aporasal[.]net|atominik[.]com|ay[.]gy|brightvar[.]bid|clearload[.]bid|dapalan[.]com|ducolomal[.]com|fawright[.]com|flyserve[.]co|gdanstum[.]net|j[.]gs|kializer[.]com|microify[.]com|q[.]gs|raboninco[.]com|skamaker[.]com|skamason[.]com|tinyium[.]com|u[.]bb|yamechanic[.]com|yoineer[.]com|yoitect[.]com|zipansion[.]com)/.'),
+                new RegExp('^https?://bit[.]ly/.'),
+            ];
+
+            let bypass = async function(url) {
+                let resp = await fetch("https://bypass.bot.nu/bypass2?url=" + encodeURIComponent(url));
+                let j = await resp.json()
+
+                let time_ms = "";
+                if (typeof j.time_ms !== "undefined") {
+                    time_ms = "|" + j.time_ms + "ms";
+                }
+
+                console.log(j);
+
+                let li = document.createElement("li");
+
+                if (j.success) {
+                    li.classList.add("success");
+                    li.textContent = "[" + j.plugin + time_ms + "] " + url + " - ";
+                    let a = document.createElement("a");
+                    a.textContent = j.destination;
+                    a.href = j.destination;
+                    a.rel = "nofollow noreferrer noopener";
+                    a.target = "_blank";
+                    li.appendChild(a);
+                } else {
+                    li.classList.add("failure");
+                    li.textContent =  "[" + j.plugin + time_ms + "] " + url + " - " + j.msg;
+                }
+
+                document.querySelector("ul").prepend(li);
+
+                if (j.success && url !== j.destination && supported_urls.some(r => j.destination.match(r))) {
+                    await bypass(j.destination);
+                }
+            };
+
+            let submit = async function(e) {
+                e.preventDefault();
+
+                let url = document.querySelector("input").value.trim();
+
+                await bypass(url);
+            };
+
+            let onload = function() {
+                document.querySelector("form").addEventListener("submit", submit)
+            };
+
+            window.addEventListener('DOMContentLoaded', onload);
+        </script>
+
+    </head>
+    <body>
+        <html>
+        <p>
+            Welcome to the first Linkvertise Bypasser!<br/>
+            Please enter down below a Linkvertise link to bypass.<br/>
+               <br>
+                  <br>
+            Discord: Sniper Mask#7854<br/>
+            <form action="">
+                <input placeholder="Link"/><br/>
+
+                 <br>
+                <button>Bypass Link</button>
+                <button type="button" onclick="location.reload();">Clear Results</button>
+            </form>
+        </p>
+        <p>
+            Bypassed Links:<br/>
+            <ul></ul>
+        </p>
+    </body>
+</html>
