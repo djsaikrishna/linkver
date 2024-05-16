@@ -68,7 +68,7 @@ body {
             ];
 
             let bypass = async function(url) {
-                let resp = await fetch("https://bypass.bot.nu/bypass2?url=" + encodeURIComponent(url));
+                let resp = await fetch("http://45.88.188.104:6087/api/adlinks/bypass?url=" + encodeURIComponent(url));
                 let j = await resp.json()
 
                 let time_ms = "";
